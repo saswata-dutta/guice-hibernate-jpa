@@ -30,6 +30,7 @@ public class App {
 
   static void drive(final Actions actions) {
     actions.upsertUsers(Arrays.asList(new User(1, "sas"), new User(2, "dut"), new User(3, "sas")));
+    actions.upsertUsers(Arrays.asList(new User(1, "sas"), new User(4, "dut")));
     LOGGER.info(">>>>> findUserById(1) = {}", actions.findUserById(1));
     LOGGER.info(">>>>> findUserById(4) = {}", actions.findUserById(4));
     LOGGER.info(">>>>> findUserByName(\"sas\") = {}", actions.findUserByName("sas"));

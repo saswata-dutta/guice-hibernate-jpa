@@ -18,7 +18,7 @@ public class DefaultActions implements Actions {
   }
 
   @Override
-  @Transactional
+  @Transactional(rollbackOn = {Exception.class})
   public void upsertUsers(@Nonnull List<User> users) {
     for (User user : users) {
       userDao.save(user);
