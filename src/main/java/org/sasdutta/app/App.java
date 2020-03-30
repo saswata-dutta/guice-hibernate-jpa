@@ -2,6 +2,7 @@ package org.sasdutta.app;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.persist.PersistService;
 import org.sasdutta.entities.User;
 import org.sasdutta.services.Actions;
 import org.slf4j.Logger;
@@ -22,6 +23,10 @@ public class App {
 
     injector.getBindings().forEach(
         (key, value) -> LOGGER.info(">>>>> {} => {}", key, value));
+
+    // start jpa
+    PersistService persistService = injector.getInstance(PersistService.class);
+    persistService.start();
 
     Actions actions = injector.getInstance(Actions.class);
     drive(actions);

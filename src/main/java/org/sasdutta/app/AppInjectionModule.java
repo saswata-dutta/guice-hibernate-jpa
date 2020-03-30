@@ -14,9 +14,6 @@ public class AppInjectionModule extends AbstractModule {
     // "user-persister" is defined in the persistence.xml
     install(new JpaPersistModule("user-persister"));
 
-    // starts the jpa
-    bind(PersistenceInitializer.class).asEagerSingleton();
-
     // bind classes
     bind(Actions.class).to(DefaultActions.class).in(Singleton.class);
     bind(UserDao.class).to(InMemUserDao.class).in(Singleton.class);
