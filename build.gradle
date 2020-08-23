@@ -1,11 +1,30 @@
 plugins {
-    id 'java'
+    id "application"
 }
 
 group 'org.sasdutta'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+application {
+    mainClass = 'org.sasdutta.app.App'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes "Main-Class": application.getMainClass()
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
 
 repositories {
     mavenCentral()
